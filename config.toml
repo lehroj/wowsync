@@ -1,0 +1,13 @@
+# Default configuration for WoWSync
+
+# WoW installation path
+WOW_PATH = "/Applications/World of Warcraft"
+
+# WoW versions
+WOW_CLASSIC = true
+WOW_CLASSIC_ERA = true
+WOW_RETAIL = true
+
+# Repository
+REPOSITORY_URL = ""
+REPOSITORY_BRANCH = "main"

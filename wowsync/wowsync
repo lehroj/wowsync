@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# Enable strict error handling
+set -euo pipefail
+
+# Resolve the script directory, following symlinks
+# Ensures paths work correctly even if called via a symlink
+SCRIPT_PATH="$(realpath "${BASH_SOURCE[0]}")"
+SCRIPT_DIR="$(cd "$(dirname "$SCRIPT_PATH")" && pwd)"
+
+# Include utility functions
+source "$SCRIPT_DIR/tools/utils.sh"
+
+# Get the first argument (command) or default to an empty string
+COMMAND="${1:-}"
+
+# Dispatch commands to their corresponding scripts
+case "$COMMAND" in
+    setup)
+        "$SCRIPT_DIR/scripts/setup.sh"  # Run the setup script
+        ;;
+    backup)
+        "$SCRIPT_DIR/scripts/backup.sh"  # Run the backup script
+        ;;
+    restore)
+        "$SCRIPT_DIR/scripts/restore.sh"  # Run the restore script
+        ;;
+    update)
+        "$SCRIPT_DIR/tools/update.sh"  # Run the update script
+        ;;
+    help)
+        "$SCRIPT_DIR/tools/help.sh"  # Display the help script
+        ;;
+    *)
+        error "Unknown command: $COMMAND"
+        info "Use 'wowsync help' to see available commands."
+        exit 1
+        ;;
+esac
